@@ -1,9 +1,13 @@
 const heartsContainer = document.getElementById('hearts');
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    let isPlaying = false;
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let isPlaying = false;
 
-    function createHeart() {
+if (musicBtn) {
+  musicBtn.setAttribute('aria-pressed', 'false');
+}
+
+function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.textContent = Math.random() > 0.35 ? '❤' : '♡';
@@ -16,7 +20,11 @@ const heartsContainer = document.getElementById('hearts');
       setTimeout(() => heart.remove(), 13000);
     }
 
-    setInterval(createHeart, 650);
+// Respect users who prefer reduced motion
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduceMotion) {
+  setInterval(createHeart, 650);
+}
 
     function hasMusicSource() {
       const source = music.querySelector('source');
@@ -38,4 +46,7 @@ const heartsContainer = document.getElementById('hearts');
       }
 
       isPlaying = !isPlaying;
+      if (musicBtn) {
+        musicBtn.setAttribute('aria-pressed', String(isPlaying));
+      }
     }
