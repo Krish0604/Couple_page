@@ -822,6 +822,201 @@ button:focus-visible {
   font-weight: 600;
 }
 
+.calendar-page .page-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: end;
+  margin: 36px 0 42px;
+}
+
+.calendar-page .page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  margin: 0;
+}
+
+.calendar-info {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.calendar-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.calendar-nav-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--rose-dark);
+  transition: all var(--transition) ease;
+  box-shadow: var(--shadow);
+}
+
+.calendar-nav-btn:hover {
+  transform: scale(1.1);
+  background: rgba(240, 107, 132, 0.15);
+  border-color: rgba(240, 107, 132, 0.45);
+}
+
+.calendar-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.calendar-month-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  min-width: 200px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.calendar-container {
+  position: relative;
+}
+
+.calendar-month {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.calendar-month.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.calendar-month-header {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  margin-top: 36px;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+}
+
+.calendar-day {
+  position: relative;
+  min-height: 110px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition) ease, box-shadow var(--transition) ease;
+}
+
+.calendar-day:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px rgba(140,30,55,0.16);
+}
+
+.calendar-day.calendar-header {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  min-height: auto;
+  padding: 10px 0;
+}
+
+.calendar-day .day-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--wine);
+}
+
+.calendar-day.marked {
+  background: linear-gradient(180deg, rgba(240,107,132,0.28), rgba(255,255,255,0.98));
+  border-color: rgba(240,107,132,0.45);
+}
+
+.calendar-day.marked .day-number {
+  color: var(--rose-dark);
+}
+
+.calendar-day.marked .calendar-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.6rem;
+  opacity: 0.95;
+}
+
+.calendar-heart {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 1.35rem;
+  color: var(--rose-dark);
+}
+
+/* Removed the descriptive label — only the heart remains visible */
+
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 24px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: var(--shadow);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  color: var(--wine);
+}
+
+.calendar-legend span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(240,107,132,0.16);
+  color: var(--rose-dark);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 840px) {
   .photo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
