@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* Süße Platzhalter statt leerer weißer Kalenderfelder */
+    .calendar-day.calendar-filler {
+      opacity: 0.72;
+      background: linear-gradient(135deg, rgba(255, 230, 238, 0.75), rgba(255, 248, 252, 0.95));
+      border-style: dashed;
+      border-color: rgba(214, 92, 125, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(139, 72, 91, 0.62);
+      pointer-events: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-day.calendar-filler::after {
+      content: "";
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.42);
+      top: -16px;
+      right: -14px;
+    }
+
+    .calendar-filler-content {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 1rem;
+      line-height: 1.05;
+      transform: rotate(-4deg);
+    }
+
+    .calendar-filler-content small {
+      font-size: 0.58rem;
+      letter-spacing: 0.02em;
+      opacity: 0.8;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <main class="page calendar-page">
+    <nav class="nav">
+      <div class="brand">Für Uns ❤️</div>
+      <div class="links">
+        <a href="./moments.html">Momente</a>
+        <a href="./photos.html">Fotos</a>
+        <a href="./brief.html">Brief</a>
+        <a href="./story.html">Geschichte</a>
+        <a href="./calendar.html" class="active">Kalender</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div>
+        <p class="small-title">Kalender</p>
+        <h1>Unsere gemeinsamen Ausflüge</h1>
+      </div>
+    </header>
+
+    <div class="calendar-info">
+      Hier findest du unsere besonderen Tage im Freien.
+    </div>
+
+    <div class="calendar-navigation">
+      <button class="calendar-nav-btn" id="prevMonth" aria-label="Vorheriger Monat">❮</button>
+      <div class="calendar-month-title" id="monthTitle">Dezember 2025</div>
+      <button class="calendar-nav-btn" id="nextMonth" aria-label="Nächster Monat">❯</button>
+    </div>
+
+    <div class="calendar-container">
+      <!-- Dezember 2025 -->
+      <div class="calendar-month active" data-month="0" data-title="Dezember 2025">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day marked"><span class="day-number">18</span><span class="calendar-heart" aria-hidden="true">❤️</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      </div>
+      </div>
+
+      <!-- Januar 2026 -->
+      <div class="calendar-month" data-month="1" data-title="Januar 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      </div>
+      </div>
+
+      <!-- Februar 2026 -->
+      <div class="calendar-month" data-month="2" data-title="Februar 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      </div>
+      </div>
+
+      <!-- März 2026 -->
+      <div class="calendar-month" data-month="3" data-title="März 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      </div>
+      </div>
+
+      <!-- April 2026 -->
+      <div class="calendar-month" data-month="4" data-title="April 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      </div>
+      </div>
+
+      <!-- Mai 2026 -->
+      <div class="calendar-month" data-month="5" data-title="Mai 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day marked"><span class="day-number">23</span><span class="calendar-heart" aria-hidden="true">❤️</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      </div>
+      </div>
+
+      <!-- Juni 2026 -->
+      <div class="calendar-month" data-month="6" data-title="Juni 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      </div>
+      </div>
+
+      <!-- Juli 2026 -->
+      <div class="calendar-month" data-month="7" data-title="Juli 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      </div>
+      </div>
+
+      <!-- August 2026 -->
+      <div class="calendar-month" data-month="8" data-title="August 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      </div>
+      </div>
+
+      <!-- September 2026 -->
+      <div class="calendar-month" data-month="9" data-title="September 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      </div>
+      </div>
+
+      <!-- Oktober 2026 -->
+      <div class="calendar-month" data-month="10" data-title="Oktober 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      </div>
+      </div>
+
+      <!-- November 2026 -->
+      <div class="calendar-month" data-month="11" data-title="November 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>☁️</span><small>träumen</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💌</span><small>Liebe</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🧸</span><small>Zeit</small></span></div>
+      </div>
+      </div>
+
+      <!-- Dezember 2026 -->
+      <div class="calendar-month" data-month="12" data-title="Dezember 2026">
+    <div class="calendar-grid">
+      <div class="calendar-day calendar-header">Mo</div>
+      <div class="calendar-day calendar-header">Di</div>
+      <div class="calendar-day calendar-header">Mi</div>
+      <div class="calendar-day calendar-header">Do</div>
+      <div class="calendar-day calendar-header">Fr</div>
+      <div class="calendar-day calendar-header">Sa</div>
+      <div class="calendar-day calendar-header">So</div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>💕</span><small>du & ich</small></span></div>
+      <div class="calendar-day"><span class="day-number">1</span></div>
+      <div class="calendar-day"><span class="day-number">2</span></div>
+      <div class="calendar-day"><span class="day-number">3</span></div>
+      <div class="calendar-day"><span class="day-number">4</span></div>
+      <div class="calendar-day"><span class="day-number">5</span></div>
+      <div class="calendar-day"><span class="day-number">6</span></div>
+      <div class="calendar-day"><span class="day-number">7</span></div>
+      <div class="calendar-day"><span class="day-number">8</span></div>
+      <div class="calendar-day"><span class="day-number">9</span></div>
+      <div class="calendar-day"><span class="day-number">10</span></div>
+      <div class="calendar-day"><span class="day-number">11</span></div>
+      <div class="calendar-day"><span class="day-number">12</span></div>
+      <div class="calendar-day"><span class="day-number">13</span></div>
+      <div class="calendar-day"><span class="day-number">14</span></div>
+      <div class="calendar-day"><span class="day-number">15</span></div>
+      <div class="calendar-day"><span class="day-number">16</span></div>
+      <div class="calendar-day"><span class="day-number">17</span></div>
+      <div class="calendar-day"><span class="day-number">18</span></div>
+      <div class="calendar-day"><span class="day-number">19</span></div>
+      <div class="calendar-day"><span class="day-number">20</span></div>
+      <div class="calendar-day"><span class="day-number">21</span></div>
+      <div class="calendar-day"><span class="day-number">22</span></div>
+      <div class="calendar-day"><span class="day-number">23</span></div>
+      <div class="calendar-day"><span class="day-number">24</span></div>
+      <div class="calendar-day"><span class="day-number">25</span></div>
+      <div class="calendar-day"><span class="day-number">26</span></div>
+      <div class="calendar-day"><span class="day-number">27</span></div>
+      <div class="calendar-day"><span class="day-number">28</span></div>
+      <div class="calendar-day"><span class="day-number">29</span></div>
+      <div class="calendar-day"><span class="day-number">30</span></div>
+      <div class="calendar-day"><span class="day-number">31</span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>♡</span><small>bald</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>✨</span><small>wir</small></span></div>
+      <div class="calendar-day calendar-filler" aria-hidden="true"><span class="calendar-filler-content"><span>🌷</span><small>uns</small></span></div>
+      </div>
+      </div>
+    </div>
+
+    <div class="calendar-legend">
+      <span>❤️</span>
+      <div>Markierte Tage: Wir waren draußen.</div>
+    </div>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
