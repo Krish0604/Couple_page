@@ -51,6 +51,78 @@ if (!reduceMotion) {
       }
     }
 
+function initPhotoSlider() {
+  const slider = document.querySelector('.photo-slider');
+  const track = document.querySelector('.photo-track');
+  const prevButton = document.querySelector('.slider-prev');
+  const nextButton = document.querySelector('.slider-next');
+  const counter = document.querySelector('.slider-counter');
+
+  if (!slider || !track || !prevButton || !nextButton || !counter) {
+    return;
+  }
+
+  const slides = Array.from(track.querySelectorAll('.photo-card'));
+  let currentIndex = 0;
+
+  const updateCounter = (index) => {
+    currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+  };
+
+  const scrollToIndex = (index) => {
+    const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+    const targetSlide = slides[targetIndex];
+    if (!targetSlide) return;
+    track.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
+  };
+
+  prevButton.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+  nextButton.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+
+  let isTicking = false;
+  track.addEventListener('scroll', () => {
+    if (isTicking) return;
+    window.requestAnimationFrame(() => {
+      const nearest = slides.reduce(
+        (best, slide, idx) => {
+          const diff = Math.abs(slide.offsetLeft - track.scrollLeft);
+          return diff < best.diff ? { idx, diff } : best;
+        },
+        { idx: 0, diff: Infinity }
+      );
+
+      updateCounter(nearest.idx);
+      isTicking = false;
+    });
+    isTicking = true;
+  });
+
+  const handleSliderArrowKeys = (event) => {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
+      return;
+    }
+
+    const active = document.activeElement;
+    if (!slider.contains(active)) {
+      return;
+    }
+
+    event.preventDefault();
+    if (event.key === 'ArrowRight') {
+      scrollToIndex(currentIndex + 1);
+    } else if (event.key === 'ArrowLeft') {
+      scrollToIndex(currentIndex - 1);
+    }
+  };
+
+  document.addEventListener('keydown', handleSliderArrowKeys);
+  track.setAttribute('tabindex', '0');
+  updateCounter(0);
+}
+
+initPhotoSlider();
+
 // Calendar Navigation
 const prevBtn = document.getElementById('prevMonth');
 const nextBtn = document.getElementById('nextMonth');
