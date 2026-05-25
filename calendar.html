@@ -8,53 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
-
-  <style>
-    /* Süße Platzhalter statt leerer weißer Kalenderfelder */
-    .calendar-day.calendar-filler {
-      opacity: 0.72;
-      background: linear-gradient(135deg, rgba(255, 230, 238, 0.75), rgba(255, 248, 252, 0.95));
-      border-style: dashed;
-      border-color: rgba(214, 92, 125, 0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(139, 72, 91, 0.62);
-      pointer-events: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .calendar-day.calendar-filler::after {
-      content: "";
-      position: absolute;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.42);
-      top: -16px;
-      right: -14px;
-    }
-
-    .calendar-filler-content {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      font-size: 1rem;
-      line-height: 1.05;
-      transform: rotate(-4deg);
-    }
-
-    .calendar-filler-content small {
-      font-size: 0.58rem;
-      letter-spacing: 0.02em;
-      opacity: 0.8;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-  </style>
 </head>
 <body>
   <div class="hearts" id="hearts"></div>
@@ -76,10 +29,6 @@
         <h1>Unsere gemeinsamen Ausflüge</h1>
       </div>
     </header>
-
-    <div class="calendar-info">
-      Hier findest du unsere besonderen Tage im Freien.
-    </div>
 
     <div class="calendar-navigation">
       <button class="calendar-nav-btn" id="prevMonth" aria-label="Vorheriger Monat">❮</button>
